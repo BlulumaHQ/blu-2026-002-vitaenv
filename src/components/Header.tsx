@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Mail, Phone } from "lucide-react";
 import vitaLogo from "@/assets/vita-logo.svg";
 
 const navLinks = [
-  { label: "Home", path: "/" },
-  { label: "Services", path: "/services" },
-  { label: "Projects", path: "/projects" },
-  { label: "Contact", path: "/contact" },
+  { label: "HOME", path: "/" },
+  { label: "SERVICES", path: "/services" },
+  { label: "PROJECTS", path: "/projects" },
+  { label: "CONTACT", path: "/contact" },
 ];
 
 const Header = () => {
@@ -15,71 +15,74 @@ const Header = () => {
   const location = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div className="container-wide flex items-center justify-between h-20 px-6 md:px-12 lg:px-20">
-        <Link to="/" className="flex-shrink-0">
-          <img src={vitaLogo} alt="Vita Constructions" className="h-12 w-auto" />
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`text-sm font-medium tracking-wide uppercase transition-colors hover:text-vita-blue ${
-                location.pathname === link.path ? "text-vita-blue" : "text-vita-dark"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <a
-            href="tel:+1234567890"
-            className="flex items-center gap-2 bg-vita-blue text-primary-foreground px-5 py-2.5 text-sm font-semibold rounded hover:opacity-90 transition-opacity"
-          >
-            <Phone className="w-4 h-4" />
-            Call Us
+    <>
+      {/* Top Bar */}
+      <div className="bg-foreground text-background text-xs">
+        <div className="max-w-[1170px] mx-auto px-4 flex justify-end items-center h-8 gap-6">
+          <a href="mailto:info@vitaenv.com" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+            <Mail className="w-3 h-3" />
+            info@vitaenv.com
           </a>
-        </nav>
-
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden p-2 text-vita-dark"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+          <a href="tel:+17785081118" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+            <Phone className="w-3 h-3" />
+            (778) 508-1118
+          </a>
+        </div>
       </div>
 
-      {/* Mobile Nav */}
-      {mobileOpen && (
-        <div className="md:hidden bg-background border-t border-border">
-          <nav className="flex flex-col px-6 py-4 gap-4">
+      {/* Main Nav */}
+      <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
+        <div className="max-w-[1170px] mx-auto px-4 flex items-center justify-between h-[70px]">
+          <Link to="/" className="flex-shrink-0">
+            <img src={vitaLogo} alt="Vita Constructions" className="h-14 w-auto" />
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-7">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                onClick={() => setMobileOpen(false)}
-                className={`text-sm font-medium tracking-wide uppercase py-2 transition-colors ${
-                  location.pathname === link.path ? "text-vita-blue" : "text-vita-dark"
+                className={`text-[13px] font-medium tracking-wide transition-colors hover:text-primary ${
+                  location.pathname === link.path ? "text-primary" : "text-foreground"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <a
-              href="tel:+1234567890"
-              className="flex items-center justify-center gap-2 bg-vita-blue text-primary-foreground px-5 py-3 text-sm font-semibold rounded mt-2"
-            >
-              <Phone className="w-4 h-4" />
-              Call Us
-            </a>
           </nav>
+
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden p-2 text-foreground"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-      )}
-    </header>
+
+        {/* Mobile Nav */}
+        {mobileOpen && (
+          <div className="md:hidden bg-background border-t border-border">
+            <nav className="flex flex-col px-4 py-3 gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setMobileOpen(false)}
+                  className={`text-[13px] font-medium tracking-wide py-2.5 transition-colors ${
+                    location.pathname === link.path ? "text-primary" : "text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
+    </>
   );
 };
 

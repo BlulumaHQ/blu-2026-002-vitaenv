@@ -1,297 +1,214 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Building2, HardHat, Ruler, Shield, CheckCircle, ArrowRight } from "lucide-react";
-import heroImage from "@/assets/hero-construction.jpg";
-import projectCommercial from "@/assets/project-commercial.jpg";
-import projectResidential from "@/assets/project-residential.jpg";
-import projectIndustrial from "@/assets/project-industrial.jpg";
+import { CheckCircle, ArrowRight, ClipboardList, Calendar, ShoppingCart, HardHat, Shield, Users, MessageSquare, Briefcase } from "lucide-react";
 import Layout from "@/components/Layout";
+import SectionSeparator from "@/components/SectionSeparator";
+import sliderImage from "@/assets/vita-slider-1.png";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
+const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
-const stagger = {
-  visible: { transition: { staggerChildren: 0.15 } },
-};
-
-const services = [
-  {
-    icon: Building2,
-    title: "General Contracting",
-    desc: "Full-scope project delivery from pre-construction to final closeout.",
-  },
-  {
-    icon: HardHat,
-    title: "Construction Management",
-    desc: "Expert oversight ensuring quality, safety, and schedule adherence.",
-  },
-  {
-    icon: Ruler,
-    title: "Renovations & Buildouts",
-    desc: "Transforming existing spaces with precision and minimal disruption.",
-  },
-  {
-    icon: Shield,
-    title: "Pre-Construction Services",
-    desc: "Planning, budgeting, and value engineering before ground breaks.",
-  },
+const whyVitaPoints = [
+  { icon: Users, title: "Strong GC management", desc: "We coordinate trades, schedules, materials, and site standards so the work stays organized and moving." },
+  { icon: Briefcase, title: "Experience you can trust", desc: "15+ years delivering builds, renovations, and improvements with consistent results." },
+  { icon: ClipboardList, title: "Flexible delivery", desc: "When timelines or budgets are tight, we help you prioritize scope, offer options, and phase work where it makes sense." },
+  { icon: MessageSquare, title: "Clear communication", desc: "Fast answers, regular updates, and transparent change management." },
+  { icon: Shield, title: "Professional jobsites", desc: "Clean, safe, respectful—especially important for occupied homes and active businesses." },
 ];
 
-const stats = [
-  { value: "25+", label: "Years Experience" },
-  { value: "500+", label: "Projects Completed" },
-  { value: "100%", label: "Client Satisfaction" },
-  { value: "50+", label: "Team Members" },
+const commercialServices = [
+  "Tenant Improvements & Buildouts",
+  "Interior Renovations & Refreshes",
+  "Unit Turnovers & Make-Good",
+  "Back-of-House Upgrades (storage, staff areas, washrooms)",
+  "Repairs & Ongoing Maintenance",
 ];
 
-const projects = [
-  { image: projectCommercial, title: "Commercial Office Complex", category: "Commercial" },
-  { image: projectResidential, title: "Custom Residential Build", category: "Residential" },
-  { image: projectIndustrial, title: "Industrial Warehouse", category: "Industrial" },
+const residentialServices = [
+  "Home Renovations (full or partial)",
+  "Kitchens & Bathrooms",
+  "Basement Finishing",
+  "Additions & Structural Changes",
+  "Exterior Upgrades (decks, siding, doors/windows)",
+  "Repairs & Upgrades (dry rot, water damage, framing)",
+];
+
+const handlePoints = [
+  "Scope planning & estimating with clear inclusions/exclusions",
+  "Scheduling & sequencing to reduce downtime and prevent trade conflicts",
+  "Procurement planning for long-lead items and site readiness",
+  "Site logistics (access, safety, protection, cleanliness)",
+  "Quality control throughout, not just at the end",
+  "Closeout with punch-list completion and turnover support",
+];
+
+const processSteps = [
+  { step: "01", title: "Consultation", desc: "Goals, budget range, timeline, and site conditions." },
+  { step: "02", title: "Scope & Estimate", desc: "Clear breakdown, options, and realistic expectations." },
+  { step: "03", title: "Plan & Schedule", desc: "Trades, materials, milestones, and site logistics." },
+  { step: "04", title: "Build", desc: "Consistent communication, clean site practices, quality checks." },
+  { step: "05", title: "Final Walkthrough", desc: "Punch-list completed and project wrapped properly." },
 ];
 
 const Index = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative h-[85vh] min-h-[600px] flex items-center">
+      <section className="relative min-h-[500px] md:min-h-[600px] flex items-center">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="Construction site" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-vita-dark/70" />
+          <img src={sliderImage} alt="Construction" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-foreground/70" />
         </div>
-        <div className="relative z-10 container-wide px-6 md:px-12 lg:px-20">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-            className="max-w-2xl"
-          >
-            <motion.p variants={fadeUp} className="text-vita-blue text-sm font-semibold uppercase tracking-widest mb-4">
-              General Contracting
-            </motion.p>
-            <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-tight mb-6">
-              Building With
-              <br />
-              <span className="text-vita-blue">Purpose & Precision</span>
+        <div className="relative z-10 max-w-[1170px] mx-auto px-4 py-20">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-2xl">
+            <motion.h1 variants={fadeUp} className="text-3xl md:text-5xl font-bold text-background leading-tight mb-6">
+              General Contracting, Made Simple.
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-primary-foreground/80 text-lg md:text-xl mb-8 leading-relaxed">
-              Vita Constructions delivers professional general contracting services with a commitment to quality, safety, and client satisfaction on every project.
+            <motion.p variants={fadeUp} className="text-background/85 text-base md:text-lg leading-relaxed mb-8">
+              Vita is a general contracting company delivering clean, durable builds with 15+ years of experience. We lead projects with clear communication, strong coordination, and the flexibility to meet tight timelines and practical budgets—for both commercial and residential work.
             </motion.p>
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
               <Link
                 to="/contact"
-                className="bg-vita-blue text-primary-foreground px-8 py-3.5 font-semibold rounded hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+                className="bg-primary text-primary-foreground px-7 py-3 text-sm font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-2"
               >
-                Get a Quote
-                <ArrowRight className="w-4 h-4" />
+                Contact us <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                to="/projects"
-                className="border border-primary-foreground/30 text-primary-foreground px-8 py-3.5 font-semibold rounded hover:bg-primary-foreground/10 transition-colors"
+                to="/services"
+                className="border border-background/40 text-background px-7 py-3 text-sm font-semibold hover:bg-background/10 transition-colors"
               >
-                View Projects
+                Services
               </Link>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="bg-vita-blue">
-        <div className="container-wide px-6 md:px-12 lg:px-20 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="text-3xl md:text-4xl font-extrabold text-primary-foreground">{stat.value}</p>
-                <p className="text-sm text-primary-foreground/80 mt-1 font-medium">{stat.label}</p>
+      {/* Why Vita */}
+      <section className="py-16 md:py-20 bg-background">
+        <div className="max-w-[1170px] mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold uppercase">Why Vita</h2>
+            <SectionSeparator />
+            <p className="text-muted-foreground max-w-2xl mx-auto">Reliable Project Leadership From Start to Finish</p>
+          </div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {whyVitaPoints.map((point) => (
+              <motion.div key={point.title} variants={fadeUp} className="flex gap-4">
+                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center flex-shrink-0 rounded">
+                  <point.icon className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-sm mb-1">{point.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{point.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section className="py-16 md:py-20 bg-muted">
+        <div className="max-w-[1170px] mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold uppercase">Services</h2>
+            <SectionSeparator />
+            <p className="text-muted-foreground max-w-2xl mx-auto">General Contracting Services</p>
+          </div>
+          <p className="text-center text-muted-foreground mb-10 max-w-3xl mx-auto">
+            Vita manages projects from planning to closeout—so you have one accountable team driving the job forward.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* Commercial */}
+            <div className="bg-background p-8 border border-border">
+              <h3 className="text-lg font-bold mb-4 text-primary">Commercial</h3>
+              <ul className="space-y-2.5">
+                {commercialServices.map((s) => (
+                  <li key={s} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Residential */}
+            <div className="bg-background p-8 border border-border">
+              <h3 className="text-lg font-bold mb-4 text-primary">Residential</h3>
+              <ul className="space-y-2.5">
+                {residentialServices.map((s) => (
+                  <li key={s} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="text-center text-sm text-muted-foreground mt-8 italic">
+            If you're not sure where your project fits, send the details— we'll tell you quickly and honestly.
+          </p>
+        </div>
+      </section>
+
+      {/* What We Handle */}
+      <section className="py-16 md:py-20 bg-background">
+        <div className="max-w-[1170px] mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold uppercase">What We Handle</h2>
+            <SectionSeparator />
+            <p className="text-muted-foreground max-w-2xl mx-auto">Coordination That Keeps Projects Moving</p>
+          </div>
+          <p className="text-center text-muted-foreground mb-10 max-w-3xl mx-auto">
+            The finish matters—but the process matters just as much. We focus on the fundamentals that protect schedule, budget, and quality:
+          </p>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+            {handlePoints.map((point) => (
+              <motion.div key={point} variants={fadeUp} className="flex items-start gap-3 text-sm">
+                <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-muted-foreground">{point}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Process */}
+      <section className="py-16 md:py-20 bg-muted">
+        <div className="max-w-[1170px] mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold uppercase">Process</h2>
+            <SectionSeparator />
+            <p className="text-muted-foreground max-w-2xl mx-auto">A Straightforward Build Process</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+            {processSteps.map((s) => (
+              <div key={s.step} className="bg-background border border-border p-6 text-center">
+                <div className="text-2xl font-bold text-primary mb-2">{s.step}</div>
+                <h4 className="font-bold text-sm mb-2">{s.title}</h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services Overview */}
-      <section className="section-padding bg-background">
-        <div className="container-wide">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={stagger}
-            className="text-center mb-14"
-          >
-            <motion.p variants={fadeUp} className="text-vita-blue text-sm font-semibold uppercase tracking-widest mb-3">
-              What We Do
-            </motion.p>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-extrabold">
-              Our Services
-            </motion.h2>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={stagger}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          >
-            {services.map((service) => (
-              <motion.div
-                key={service.title}
-                variants={fadeUp}
-                className="bg-background border border-border rounded p-8 hover:border-vita-blue/40 transition-colors group"
-              >
-                <service.icon className="w-10 h-10 text-vita-blue mb-5" />
-                <h3 className="text-lg font-bold mb-3">{service.title}</h3>
-                <p className="text-sm text-vita-gray leading-relaxed">{service.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <div className="text-center mt-12">
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 text-vita-blue font-semibold text-sm hover:underline"
-            >
-              View All Services
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className="section-padding bg-vita-gray-light">
-        <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={stagger}
-            >
-              <motion.p variants={fadeUp} className="text-vita-blue text-sm font-semibold uppercase tracking-widest mb-3">
-                About Vita Constructions
-              </motion.p>
-              <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-extrabold mb-6">
-                Quality Construction You Can Trust
-              </motion.h2>
-              <motion.p variants={fadeUp} className="text-vita-gray leading-relaxed mb-6">
-                With over 25 years of experience in general contracting, Vita Constructions has built a reputation for delivering projects on time, on budget, and to the highest standards of quality and safety.
-              </motion.p>
-              <motion.ul variants={stagger} className="space-y-3 mb-8">
-                {[
-                  "Licensed and fully insured",
-                  "Experienced project management team",
-                  "Commitment to safety and compliance",
-                  "Transparent communication and budgeting",
-                ].map((item) => (
-                  <motion.li key={item} variants={fadeUp} className="flex items-center gap-3 text-sm text-vita-dark">
-                    <CheckCircle className="w-5 h-5 text-vita-blue flex-shrink-0" />
-                    {item}
-                  </motion.li>
-                ))}
-              </motion.ul>
-              <motion.div variants={fadeUp}>
-                <Link
-                  to="/contact"
-                  className="bg-vita-blue text-primary-foreground px-8 py-3.5 font-semibold rounded hover:opacity-90 transition-opacity inline-flex items-center gap-2"
-                >
-                  Contact Us
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="grid grid-cols-2 gap-4"
-            >
-              <img src={projectCommercial} alt="Commercial project" className="rounded w-full h-64 object-cover" />
-              <img src={projectResidential} alt="Residential project" className="rounded w-full h-64 object-cover mt-8" />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Projects */}
-      <section className="section-padding bg-background">
-        <div className="container-wide">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-            className="text-center mb-14"
-          >
-            <motion.p variants={fadeUp} className="text-vita-blue text-sm font-semibold uppercase tracking-widest mb-3">
-              Our Work
-            </motion.p>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-extrabold">
-              Featured Projects
-            </motion.h2>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {projects.map((project) => (
-              <motion.div key={project.title} variants={fadeUp} className="group overflow-hidden rounded">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-vita-blue text-primary-foreground text-xs font-semibold px-3 py-1 rounded">
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-5 border border-t-0 border-border">
-                  <h3 className="font-bold text-lg">{project.title}</h3>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <div className="text-center mt-12">
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 text-vita-blue font-semibold text-sm hover:underline"
-            >
-              View All Projects
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="bg-vita-dark">
-        <div className="container-wide section-padding text-center">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-primary-foreground mb-4">
-            Ready to Start Your Project?
-          </h2>
-          <p className="text-primary-foreground/70 text-lg mb-8 max-w-xl mx-auto">
-            Contact our team today for a free consultation and project estimate.
+      <section className="py-16 md:py-20 bg-foreground">
+        <div className="max-w-[1170px] mx-auto px-4 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-background mb-4">Ready to Start Your Project?</h2>
+          <p className="text-background/70 mb-8 max-w-xl mx-auto">
+            Contact our team today for a consultation and project estimate.
           </p>
           <Link
             to="/contact"
-            className="bg-vita-blue text-primary-foreground px-10 py-4 font-semibold rounded hover:opacity-90 transition-opacity inline-flex items-center gap-2 text-lg"
+            className="bg-primary text-primary-foreground px-8 py-3.5 font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-2"
           >
-            Get Your Free Estimate
-            <ArrowRight className="w-5 h-5" />
+            Contact Us <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>
