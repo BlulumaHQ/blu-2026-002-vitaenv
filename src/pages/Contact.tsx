@@ -14,28 +14,52 @@ const Contact = () => {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
     
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get("username"),
-      email: formData.get("email"),
-      message: formData.get("message"),
-    };
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-    const mailtoLink = `mailto:jim@vitaenv.com?subject=Contact Form Submission from ${data.name}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\nMessage: ${data.message}`)}`;
-    
-    setTimeout(() => {
-      setSubmitting(false);
-      toast({
-        title: "Message Sent",
-        description: "Thank you for contacting us. We'll get back to you shortly.",
+    try {
+      const res = await fetch("https://api.staticforms.xyz/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          accessKey: "sf_9cnbhm86hb32b3f7ibabhc00",
+          name: formData.get("username"),
+          email: formData.get("email"),
+          phone: formData.get("phone") || "",
+          message: formData.get("message"),
+          subject: "Vita Constructions Website Inquiry",
+          source: "vita-preview.bluluma.com",
+        }),
       });
-      (e.target as HTMLFormElement).reset();
-      window.open(mailtoLink, "_self");
-    }, 600);
+
+      const data = await res.json();
+
+      if (data.success) {
+        toast({
+          title: "Message Sent",
+          description: "Thank you for contacting us. We'll get back to you shortly.",
+        });
+        form.reset();
+      } else {
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -125,6 +149,17 @@ const Contact = () => {
                       type="email"
                       required
                       placeholder="Email"
+                      className="flex-1 py-2.5 pr-3 bg-background outline-none"
+                    />
+                  </div>
+                  <div className="flex items-center border border-border bg-background">
+                    <span className="px-3 text-muted-foreground">
+                      <Smartphone className="w-4 h-4" />
+                    </span>
+                    <input
+                      name="phone"
+                      type="tel"
+                      placeholder="Phone (optional)"
                       className="flex-1 py-2.5 pr-3 bg-background outline-none"
                     />
                   </div>
