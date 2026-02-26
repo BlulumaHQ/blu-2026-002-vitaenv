@@ -1,73 +1,40 @@
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ChevronsRight } from "lucide-react";
 import Layout from "@/components/Layout";
-import projectCommercial from "@/assets/project-commercial.jpg";
-import projectResidential from "@/assets/project-residential.jpg";
-import projectIndustrial from "@/assets/project-industrial.jpg";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
-};
+import PageBanner from "@/components/PageBanner";
+import bannerImage from "@/assets/vita-slider-2.png";
+import img1 from "@/assets/project-reference-1.png";
+import img2 from "@/assets/project-reference-2.png";
+import img3 from "@/assets/project-reference-3.png";
+import img4 from "@/assets/project-reference-4.png";
+import img5 from "@/assets/project-reference-5.png";
+import img6 from "@/assets/project-reference-6.png";
 
 const projects = [
-  {
-    image: projectCommercial,
-    title: "Metro Business Center",
-    category: "Commercial",
-    description: "A 50,000 sq ft modern office complex featuring sustainable design and LEED-certified construction.",
-  },
-  {
-    image: projectResidential,
-    title: "Lakewood Custom Home",
-    category: "Residential",
-    description: "Custom-built luxury residence with premium finishes and energy-efficient systems throughout.",
-  },
-  {
-    image: projectIndustrial,
-    title: "Westside Distribution Hub",
-    category: "Industrial",
-    description: "75,000 sq ft warehouse and distribution center with loading docks and climate-controlled storage.",
-  },
-  {
-    image: projectCommercial,
-    title: "Downtown Retail Renovation",
-    category: "Commercial",
-    description: "Complete interior renovation of a historic downtown retail space, preserving character while modernizing systems.",
-  },
-  {
-    image: projectResidential,
-    title: "Oakridge Townhomes",
-    category: "Residential",
-    description: "Multi-unit residential development featuring 12 contemporary townhomes with modern amenities.",
-  },
-  {
-    image: projectIndustrial,
-    title: "Northgate Manufacturing Facility",
-    category: "Industrial",
-    description: "Purpose-built manufacturing facility with specialized infrastructure and safety systems.",
-  },
+  { image: img1, title: "Project Reference 1", desc: "Downtown Vancouver luxury hotel demolition project" },
+  { image: img2, title: "Project Reference 2", desc: "Oakridge area, two multi-use commercial building construction prior to 1960." },
+  { image: img3, title: "Project Reference 3", desc: "Large commercial retail unit in a Coquitlam shopping mall." },
+  { image: img4, title: "Project Reference 4", desc: "Downtown Vancouver heritage building double height asbestos boiler demolition project" },
+  { image: img5, title: "Project Reference 5", desc: "Metro Vancouver affordable housing demolition project" },
+  { image: img6, title: "Project Reference 6", desc: "Canada place mechanical system selective demolition and removal completed on schedule with no retail operating downtime" },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
+
 const Projects = () => {
+  const [selected, setSelected] = useState<typeof projects[0] | null>(null);
+
   return (
     <Layout>
-      {/* Page Header */}
-      <section className="bg-vita-dark py-20 md:py-28">
-        <div className="container-wide px-6 md:px-12 lg:px-20">
-          <p className="text-vita-blue text-sm font-semibold uppercase tracking-widest mb-3">Our Portfolio</p>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-primary-foreground">Projects</h1>
-        </div>
-      </section>
+      <PageBanner title="PROJECTS" backgroundImage={bannerImage} breadcrumb="Projects" />
 
-      {/* Projects Grid */}
-      <section className="section-padding bg-background">
-        <div className="container-wide">
+      <section className="py-16 md:py-20 bg-background">
+        <div className="max-w-[1170px] mx-auto px-4">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -75,27 +42,29 @@ const Projects = () => {
             variants={stagger}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                variants={fadeUp}
-                className="group overflow-hidden rounded border border-border"
-              >
-                <div className="relative overflow-hidden">
+            {projects.map((project) => (
+              <motion.div key={project.title} variants={fadeUp} className="bg-background p-5">
+                <div className="overflow-hidden group">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer"
+                    onClick={() => setSelected(project)}
                   />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-vita-blue text-primary-foreground text-xs font-semibold px-3 py-1 rounded">
-                      {project.category}
-                    </span>
-                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="font-bold text-lg mb-2">{project.title}</h3>
-                  <p className="text-sm text-vita-gray leading-relaxed">{project.description}</p>
+                <div className="mt-4">
+                  <h4 className="font-bold text-base mb-2">
+                    <button onClick={() => setSelected(project)} className="hover:text-primary transition-colors text-left">
+                      {project.title}
+                    </button>
+                  </h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{project.desc}</p>
+                  <button
+                    onClick={() => setSelected(project)}
+                    className="bg-primary text-primary-foreground text-xs font-semibold px-5 py-2 hover:opacity-90 transition-opacity inline-flex items-center gap-1"
+                  >
+                    More <ChevronsRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
               </motion.div>
             ))}
@@ -103,22 +72,37 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-vita-dark section-padding">
-        <div className="container-wide text-center">
-          <h2 className="text-3xl font-extrabold text-primary-foreground mb-4">Have a Project in Mind?</h2>
-          <p className="text-primary-foreground/70 mb-8 max-w-lg mx-auto">
-            Let's discuss your vision and how we can bring it to life with quality craftsmanship.
-          </p>
-          <Link
-            to="/contact"
-            className="bg-vita-blue text-primary-foreground px-8 py-3.5 font-semibold rounded hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+      {/* Modal */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-foreground/60 flex items-center justify-center p-4"
+            onClick={() => setSelected(null)}
           >
-            Start a Conversation
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-background rounded max-w-lg w-full overflow-hidden shadow-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img src={selected.image} alt={selected.title} className="w-full h-64 object-cover" />
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="font-bold text-lg">{selected.title}</h3>
+                  <button onClick={() => setSelected(null)} className="text-muted-foreground hover:text-foreground">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">{selected.desc}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Layout>
   );
 };

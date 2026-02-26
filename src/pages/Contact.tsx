@@ -1,24 +1,8 @@
 import { useState, FormEvent } from "react";
-import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { Smartphone, Mail, MapPin } from "lucide-react";
 import Layout from "@/components/Layout";
+import SectionSeparator from "@/components/SectionSeparator";
 import { useToast } from "@/hooks/use-toast";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const contactInfo = [
-  { icon: Phone, label: "Phone", value: "(123) 456-7890", href: "tel:+1234567890" },
-  { icon: Mail, label: "Email", value: "info@vitaconstructions.com", href: "mailto:info@vitaconstructions.com" },
-  { icon: MapPin, label: "Address", value: "123 Construction Ave, Suite 100" },
-  { icon: Clock, label: "Hours", value: "Mon – Fri: 7:00 AM – 5:00 PM" },
-];
 
 const Contact = () => {
   const { toast } = useToast();
@@ -37,136 +21,135 @@ const Contact = () => {
     }, 1000);
   };
 
+  const handleReset = (e: FormEvent<HTMLFormElement>) => {
+    (e.target as HTMLFormElement).closest("form")?.reset();
+  };
+
   return (
     <Layout>
-      {/* Page Header */}
-      <section className="bg-vita-dark py-20 md:py-28">
-        <div className="container-wide px-6 md:px-12 lg:px-20">
-          <p className="text-vita-blue text-sm font-semibold uppercase tracking-widest mb-3">Get in Touch</p>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-primary-foreground">Contact Us</h1>
+      {/* Breadcrumb */}
+      <div className="bg-muted border-b border-border">
+        <div className="max-w-[1170px] mx-auto px-4 py-3">
+          <ul className="flex items-center gap-2 text-sm">
+            <li>
+              <a href="/" className="text-primary hover:underline flex items-center gap-1">
+                <span className="text-xs">🏠</span> Home
+              </a>
+            </li>
+            <li className="text-muted-foreground">»</li>
+            <li className="text-muted-foreground">Contact</li>
+          </ul>
         </div>
-      </section>
+      </div>
 
-      <section className="section-padding bg-background">
-        <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Contact Info */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={stagger}
-            >
-              <motion.h2 variants={fadeUp} className="text-3xl font-extrabold mb-4">
-                Let's Talk About Your Project
-              </motion.h2>
-              <motion.p variants={fadeUp} className="text-vita-gray mb-10 leading-relaxed">
-                Whether you're planning a new build, renovation, or need construction consultation, our team is ready to help. Reach out and we'll get back to you within one business day.
-              </motion.p>
+      {/* Contact Info Cards */}
+      <section className="py-16 md:py-20 bg-background">
+        <div className="max-w-[1170px] mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            {/* Phone */}
+            <div className="bg-primary text-center p-8 flex flex-col items-center">
+              <Smartphone className="w-8 h-8 text-primary-foreground mb-3" />
+              <h5 className="text-primary-foreground font-bold text-sm mb-2">Phone number</h5>
+              <p className="text-primary-foreground/70 text-sm">(778) 508-1118</p>
+            </div>
+            {/* Email */}
+            <div className="bg-primary text-center p-8 flex flex-col items-center">
+              <Mail className="w-8 h-8 text-primary-foreground mb-3" />
+              <h5 className="text-primary-foreground font-bold text-sm mb-2">Email address</h5>
+              <p className="text-primary-foreground/70 text-sm">info@vitaenv.com</p>
+            </div>
+            {/* Address */}
+            <div className="bg-primary text-center p-8 flex flex-col items-center">
+              <MapPin className="w-8 h-8 text-primary-foreground mb-3" />
+              <h5 className="text-primary-foreground font-bold text-sm mb-2">Address info</h5>
+              <p className="text-primary-foreground/70 text-sm">
+                110-60 East 5th Avenue<br />
+                Vancouver, BC V5T 1G8
+              </p>
+            </div>
+          </div>
 
-              <motion.div variants={stagger} className="space-y-6">
-                {contactInfo.map((item) => (
-                  <motion.div key={item.label} variants={fadeUp} className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded bg-vita-blue/10 flex items-center justify-center flex-shrink-0">
-                      <item.icon className="w-5 h-5 text-vita-blue" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-vita-gray mb-1">{item.label}</p>
-                      {item.href ? (
-                        <a href={item.href} className="text-vita-dark font-medium hover:text-vita-blue transition-colors">
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-vita-dark font-medium">{item.value}</p>
-                      )}
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
+          {/* Map & Form */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Map */}
+            <div>
+              <h4 className="text-lg font-bold uppercase mb-2">Location</h4>
+              <SectionSeparator />
+              <div className="mt-4">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2603.5481472013435!2d-123.103234456516!3d49.26600978214879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54867160009b11c3%3A0x1262cf580dd08946!2s60%20E%205th%20Ave%20%23110%2C%20Vancouver%2C%20BC%20V5T%201G8%2C%20Canada!5e0!3m2!1sen!2sde!4v1705352060429!5m2!1sen!2sde"
+                  width="100%"
+                  height="350"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Vita Environmental Location"
+                  className="w-full"
+                />
+              </div>
+            </div>
 
-            {/* Contact Form */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-            >
-              <form onSubmit={handleSubmit} className="border border-border rounded p-8 space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-vita-gray mb-2">
-                      First Name *
-                    </label>
+            {/* Form */}
+            <div>
+              <h4 className="text-lg font-bold uppercase mb-2">Contact Form</h4>
+              <SectionSeparator />
+              <div className="bg-muted p-6 mt-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="flex items-center border border-border bg-background">
+                    <span className="px-3 text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                    </span>
                     <input
-                      required
+                      name="username"
                       type="text"
-                      className="w-full border border-border rounded px-4 py-3 text-sm bg-background focus:outline-none focus:border-vita-blue transition-colors"
+                      required
+                      placeholder="Name"
+                      className="flex-1 py-2.5 pr-3 text-sm bg-background outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-vita-gray mb-2">
-                      Last Name *
-                    </label>
+                  <div className="flex items-center border border-border bg-background">
+                    <span className="px-3 text-muted-foreground">
+                      <Mail className="w-4 h-4" />
+                    </span>
                     <input
+                      name="email"
+                      type="email"
                       required
-                      type="text"
-                      className="w-full border border-border rounded px-4 py-3 text-sm bg-background focus:outline-none focus:border-vita-blue transition-colors"
+                      placeholder="Email"
+                      className="flex-1 py-2.5 pr-3 text-sm bg-background outline-none"
                     />
                   </div>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-vita-gray mb-2">
-                    Email *
-                  </label>
-                  <input
-                    required
-                    type="email"
-                    className="w-full border border-border rounded px-4 py-3 text-sm bg-background focus:outline-none focus:border-vita-blue transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-vita-gray mb-2">
-                    Phone
-                  </label>
-                  <input
-                    type="tel"
-                    className="w-full border border-border rounded px-4 py-3 text-sm bg-background focus:outline-none focus:border-vita-blue transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-vita-gray mb-2">
-                    Project Type
-                  </label>
-                  <select className="w-full border border-border rounded px-4 py-3 text-sm bg-background focus:outline-none focus:border-vita-blue transition-colors">
-                    <option value="">Select a project type</option>
-                    <option>Commercial Construction</option>
-                    <option>Residential Construction</option>
-                    <option>Industrial Construction</option>
-                    <option>Renovation / Buildout</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-vita-gray mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    required
-                    rows={5}
-                    className="w-full border border-border rounded px-4 py-3 text-sm bg-background focus:outline-none focus:border-vita-blue transition-colors resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full bg-vita-blue text-primary-foreground px-8 py-3.5 font-semibold rounded hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-60"
-                >
-                  {submitting ? "Sending..." : "Send Message"}
-                  <Send className="w-4 h-4" />
-                </button>
-              </form>
-            </motion.div>
+                  <div className="flex items-start border border-border bg-background">
+                    <span className="px-3 pt-2.5 text-muted-foreground">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                    </span>
+                    <textarea
+                      name="message"
+                      rows={3}
+                      required
+                      placeholder="Message"
+                      className="flex-1 py-2.5 pr-3 text-sm bg-background outline-none resize-none"
+                    />
+                  </div>
+                  <div className="flex gap-3">
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="bg-primary text-primary-foreground text-xs font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity inline-flex items-center gap-1 disabled:opacity-60"
+                    >
+                      {submitting ? "Sending..." : "Submit"} <span className="text-[10px]">»</span>
+                    </button>
+                    <button
+                      type="reset"
+                      className="bg-primary text-primary-foreground text-xs font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity inline-flex items-center gap-1"
+                    >
+                      Reset <span className="text-[10px]">»</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </section>

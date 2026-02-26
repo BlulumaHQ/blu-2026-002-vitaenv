@@ -1,64 +1,56 @@
-import { motion } from "framer-motion";
-import { Building2, HardHat, Ruler, Shield, Wrench, ClipboardCheck, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import Layout from "@/components/Layout";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
-};
+import PageBanner from "@/components/PageBanner";
+import SectionSeparator from "@/components/SectionSeparator";
+import bannerImage from "@/assets/vita-slider-1.png";
+import imgAsbestos from "@/assets/services-asbestos-removal.png";
+import imgDemolition from "@/assets/services-selective-demolition.png";
+import imgInterior from "@/assets/services-interior-demolition.png";
+import imgLead from "@/assets/services-lead-abatement.png";
+import imgDeconstruction from "@/assets/services-deconstruction.png";
+import imgSampling from "@/assets/services-asbestos-sampling-and-testing.png";
+import imgWater from "@/assets/services-water-and-flood-damage-restoration.png";
+import imgMold from "@/assets/services-mold-removal.png";
 
 const services = [
-  {
-    icon: Building2,
-    title: "General Contracting",
-    desc: "Complete project delivery from concept to completion. We manage all phases of construction, ensuring quality and efficiency at every step.",
-  },
-  {
-    icon: HardHat,
-    title: "Construction Management",
-    desc: "Professional oversight of your project with a focus on budget control, schedule management, and quality assurance.",
-  },
-  {
-    icon: Ruler,
-    title: "Renovations & Buildouts",
-    desc: "Expert renovation and tenant improvement services for commercial and residential properties.",
-  },
-  {
-    icon: Shield,
-    title: "Pre-Construction Planning",
-    desc: "Comprehensive planning, cost estimation, and value engineering to maximize your investment before construction begins.",
-  },
-  {
-    icon: Wrench,
-    title: "Maintenance & Repairs",
-    desc: "Ongoing building maintenance and repair services to protect your investment and extend the life of your property.",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Consulting & Compliance",
-    desc: "Construction consulting, building code compliance, and permit management for projects of all sizes.",
-  },
+  { image: imgAsbestos, title: "Asbestos Removal", desc: "AES asbestos abatement service is a dedicated solution crafted to tackle the hazardous presence of asbestos in buildings and structures." },
+  { image: imgDemolition, title: "Selective Demolition", desc: "Our specialized team is experienced in working through challenges and provide creative approaches to every project." },
+  { image: imgInterior, title: "Interior Demolition", desc: "AES's interior demolition team is highly efficient and are flexible with scheduling to meet difficult timeline requirements." },
+  { image: imgLead, title: "Lead Abatement", desc: "AES's abatement service is a comprehensive solution designed to address the unique challenges associated with lead-based materials." },
+  { image: imgDeconstruction, title: "Deconstruction", desc: "Our deconstruction service is a sustainable and strategic approach to dismantling structures with an emphasis on salvaging materials for reuse." },
+  { image: imgSampling, title: "Asbestos Sampling and Testing", desc: "Our specialized sampling service involves collecting samples from suspect materials in your environment, followed by rigorous laboratory analysis." },
+  { image: imgWater, title: "Water and Flood Damage Restoration", desc: "AES's flood damage restoration service is a swift and comprehensive solution to mitigate the aftermath of water-related disasters." },
+  { image: imgMold, title: "Mold Removal", desc: "AES's mold removal service is a swift and efficient solution to address the potential health hazards associated with mold infestations." },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
+
 const Services = () => {
+  const [selected, setSelected] = useState<typeof services[0] | null>(null);
+
   return (
     <Layout>
-      {/* Page Header */}
-      <section className="bg-vita-dark py-20 md:py-28">
-        <div className="container-wide px-6 md:px-12 lg:px-20">
-          <p className="text-vita-blue text-sm font-semibold uppercase tracking-widest mb-3">What We Offer</p>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-primary-foreground">Our Services</h1>
-        </div>
-      </section>
+      <PageBanner title="SERVICES" backgroundImage={bannerImage} breadcrumb="Services" />
 
-      {/* Services Grid */}
-      <section className="section-padding bg-background">
-        <div className="container-wide">
+      <section className="py-16 md:py-20 bg-background">
+        <div className="max-w-[1170px] mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold uppercase">Our Services</h2>
+            <SectionSeparator />
+            <p className="text-muted-foreground max-w-3xl mx-auto text-sm leading-relaxed">
+              Asbestos is a naturally occurring mineral that was commonly used in building materials before 1990. Breathing in asbestos fibers can cause serious health problems, including lung cancer, asbestosis, and mesothelioma. Symptoms of asbestosis include shortness of breath, persistent cough, fatigue, wheezing, chest pain, and weight loss. If you suspect that you have been exposed to asbestos, it is important to seek medical attention immediately.
+            </p>
+            <p className="text-muted-foreground max-w-3xl mx-auto text-sm leading-relaxed mt-3">
+              To reduce your exposure to asbestos, avoid disturbing materials that may contain asbestos, hire a professional to test for asbestos before renovating or remodeling, and hire a qualified asbestos removal specialist to remove it safely.
+            </p>
+          </div>
+
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -67,36 +59,61 @@ const Services = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {services.map((service) => (
-              <motion.div
-                key={service.title}
-                variants={fadeUp}
-                className="border border-border rounded p-8 hover:border-vita-blue/40 transition-colors"
-              >
-                <service.icon className="w-10 h-10 text-vita-blue mb-5" />
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-sm text-vita-gray leading-relaxed">{service.desc}</p>
+              <motion.div key={service.title} variants={fadeUp} className="bg-background border border-border overflow-hidden group">
+                <div className="overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="font-bold text-base mb-2">{service.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{service.desc}</p>
+                  <button
+                    onClick={() => setSelected(service)}
+                    className="border border-foreground text-foreground text-xs font-bold px-5 py-2 hover:bg-foreground hover:text-background transition-colors"
+                  >
+                    Read More
+                  </button>
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-vita-gray-light section-padding">
-        <div className="container-wide text-center">
-          <h2 className="text-3xl font-extrabold mb-4">Need a Custom Solution?</h2>
-          <p className="text-vita-gray mb-8 max-w-lg mx-auto">
-            Every project is unique. Contact us to discuss your specific requirements and get a tailored proposal.
-          </p>
-          <Link
-            to="/contact"
-            className="bg-vita-blue text-primary-foreground px-8 py-3.5 font-semibold rounded hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+      {/* Modal */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-foreground/60 flex items-center justify-center p-4"
+            onClick={() => setSelected(null)}
           >
-            Request a Proposal
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-background rounded max-w-lg w-full overflow-hidden shadow-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img src={selected.image} alt={selected.title} className="w-full h-56 object-cover" />
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="font-bold text-lg">{selected.title}</h3>
+                  <button onClick={() => setSelected(null)} className="text-muted-foreground hover:text-foreground">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">{selected.desc}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Layout>
   );
 };
