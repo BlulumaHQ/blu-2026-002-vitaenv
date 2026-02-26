@@ -5,12 +5,12 @@ const Footer = () => {
       </div>
 
       <div style={{ backgroundColor: '#323232' }}>
-        <div className="max-w-[1170px] mx-auto px-4 py-[20px]">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-xs" style={{ color: '#FFFFFF' }}>
-            <p>
-              Vita Environmental Copyright © 2026 All Rights Reserved.
+        <div className="max-w-[1170px] mx-auto px-4" style={{ paddingTop: '12px', paddingBottom: '12px' }}>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-2" style={{ color: '#FFFFFF', fontSize: '13px' }}>
+            <p className="md:text-[13px] text-[12px]">
+              Vita Constructions Copyright © 2026 All Rights Reserved.
             </p>
-            <p>
+            <p className="md:text-[13px] text-[12px]">
               Web Design by{" "}
               <a
                 href="https://bluluma.com"

@@ -4,6 +4,7 @@ import { ChevronsRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import PageBanner from "@/components/PageBanner";
 import SectionSeparator from "@/components/SectionSeparator";
+import usePageMeta from "@/hooks/usePageMeta";
 import bannerImage from "@/assets/vita-slider-2.png";
 import { projects } from "@/data/projects";
 import projectSitesImg from "@/assets/project-sites.png";
@@ -15,6 +16,11 @@ const fadeUp = {
 const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 const Projects = () => {
+  usePageMeta({
+    title: "Vita Constructions | Projects",
+    description: "View Vita Constructions' portfolio of 150+ completed projects spanning 20+ cities, from residential homes to large industrial buildings.",
+  });
+
   return (
     <Layout>
       <PageBanner title="PROJECTS" backgroundImage={bannerImage} breadcrumb="Projects" />
@@ -39,15 +45,15 @@ const Projects = () => {
                   />
                 </Link>
                 <div className="mt-4">
-                  <h4 className="font-bold text-base mb-2">
+                  <h4 className="font-bold text-[17px] mb-2">
                     <Link to={`/projects/${project.slug}`} className="hover:text-primary transition-colors">
                       {project.title}
                     </Link>
                   </h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{project.shortDesc}</p>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{project.shortDesc}</p>
                   <Link
                     to={`/projects/${project.slug}`}
-                    className="bg-primary text-primary-foreground text-xs font-semibold px-5 py-2 hover:opacity-90 transition-opacity inline-flex items-center gap-1"
+                    className="bg-primary text-primary-foreground text-[14px] font-semibold px-5 py-2 hover:opacity-90 transition-opacity inline-flex items-center gap-1"
                   >
                     More <ChevronsRight className="w-3.5 h-3.5" />
                   </Link>
@@ -58,32 +64,32 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* CTA Band — moved to bottom per requirement */}
+      {/* CTA Band */}
       <section className="py-16 md:py-20 bg-foreground">
         <div className="max-w-[1170px] mx-auto px-4 text-center">
-          <h2 className="text-[30px] md:text-[37px] font-bold text-background mb-4">We are ready to build your dream project</h2>
+          <h2 className="text-[28px] md:text-[42px] font-bold text-background mb-4">We are ready to build your dream project</h2>
           <p className="text-background/70 mb-8 max-w-xl mx-auto">
             Contact our team today for a consultation and project estimate.
           </p>
           <Link
             to="/contact"
-            className="bg-primary text-primary-foreground px-8 py-3.5 font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+            className="bg-primary text-primary-foreground px-8 py-3.5 text-[18px] font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-2"
           >
             Contact Us <ChevronsRight className="w-4 h-4" />
           </Link>
         </div>
       </section>
 
-      {/* PROJECTS Section with map — relocated from home page to bottom of projects */}
+      {/* Projects Map */}
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-[30px] md:text-[37px] font-bold uppercase">Projects</h2>
+            <h2 className="text-[28px] md:text-[42px] font-bold uppercase">Projects</h2>
             <SectionSeparator />
-            <p className="text-muted-foreground max-w-3xl mx-auto text-sm leading-relaxed">
+            <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               VES is proud to have 150+ completed projects span over 20 different cities, from single family homes to large industrial buildings.
             </p>
-            <p className="text-muted-foreground max-w-3xl mx-auto text-sm leading-relaxed mt-3">
+            <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed mt-3">
               VES believes providing special care to every project involves a combination of attention to detail, customization, clear communication, and a commitment to continuous improvement. This approach not only ensures project success but also establishes a reputation for delivering exceptional and tailored solutions to clients.
             </p>
           </div>

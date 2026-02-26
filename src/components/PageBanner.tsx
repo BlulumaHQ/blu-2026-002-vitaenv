@@ -16,7 +16,7 @@ const PageBanner = ({ title, backgroundImage, breadcrumb }: PageBannerProps) => 
     >
       <div className="absolute inset-0 bg-foreground/70" />
       <div className="relative max-w-[1170px] mx-auto px-4">
-        <h1 className="text-[38px] md:text-[50px] font-bold text-background">{title}</h1>
+        <h1 className="text-[36px] md:text-[56px] font-bold text-background">{title}</h1>
       </div>
     </div>
 
