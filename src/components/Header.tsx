@@ -32,7 +32,7 @@ const Header = () => {
 
       {/* Main Nav */}
       <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
-        <div className="max-w-[1170px] mx-auto px-4 flex items-center justify-between h-[70px]">
+        <div className="max-w-[1170px] mx-auto px-4 flex items-center justify-between h-[85px]">
           <Link to="/" className="flex-shrink-0">
             <img src={vitaLogo} alt="Vita Constructions" className="h-14 w-auto" />
           </Link>
