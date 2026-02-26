@@ -61,7 +61,7 @@ const Projects = () => {
       {/* CTA Band — moved to bottom per requirement */}
       <section className="py-16 md:py-20 bg-foreground">
         <div className="max-w-[1170px] mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-background mb-4">We are ready to build your dream project</h2>
+          <h2 className="text-[30px] md:text-[37px] font-bold text-background mb-4">We are ready to build your dream project</h2>
           <p className="text-background/70 mb-8 max-w-xl mx-auto">
             Contact our team today for a consultation and project estimate.
           </p>
@@ -78,7 +78,7 @@ const Projects = () => {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold uppercase">Projects</h2>
+            <h2 className="text-[30px] md:text-[37px] font-bold uppercase">Projects</h2>
             <SectionSeparator />
             <p className="text-muted-foreground max-w-3xl mx-auto text-sm leading-relaxed">
               VES is proud to have 150+ completed projects span over 20 different cities, from single family homes to large industrial buildings.
