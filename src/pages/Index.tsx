@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { CheckCircle, ArrowRight, Users, Briefcase, ClipboardList, MessageSquare, Shield } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionSeparator from "@/components/SectionSeparator";
+import usePageMeta from "@/hooks/usePageMeta";
 import sliderImage1 from "@/assets/vita-slider-1.png";
 import sliderImage2 from "@/assets/vita-slider-2.png";
 
@@ -58,6 +59,11 @@ const processSteps = [
 ];
 
 const Index = () => {
+  usePageMeta({
+    title: "Vita Constructions | General Contracting & Abatement",
+    description: "Vita Constructions is a general contracting company delivering clean, durable builds with 15+ years of experience in commercial and residential projects.",
+  });
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = useCallback(() => {
@@ -90,25 +96,25 @@ const Index = () => {
           </div>
         ))}
 
-        {/* Text overlay — positioned upper-mid like original */}
+        {/* Text overlay */}
         <div className="relative z-20 max-w-[1170px] mx-auto px-4 pt-[100px] md:pt-[140px]">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-[700px]">
-            <motion.h1 variants={fadeUp} className="text-[40px] md:text-[62px] font-bold text-background leading-[1.15] mb-5 uppercase" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+            <motion.h1 variants={fadeUp} className="text-[36px] md:text-[56px] font-bold text-background leading-[1.15] mb-5 uppercase" style={{ fontFamily: "'Open Sans', sans-serif" }}>
               <span className="text-primary">General Contracting,</span> Made Simple.
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-background/85 text-base md:text-lg leading-[1.65] mb-8">
+            <motion.p variants={fadeUp} className="text-background/85 text-[17px] md:text-[19px] leading-[1.65] mb-8">
               Vita is a general contracting company delivering clean, durable builds with 15+ years of experience. We lead projects with clear communication, strong coordination, and the flexibility to meet tight timelines and practical budgets—for both commercial and residential work.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
               <Link
                 to="/contact"
-                className="bg-primary text-primary-foreground px-8 py-2.5 text-sm font-bold uppercase hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+                className="bg-primary text-primary-foreground px-8 py-2.5 text-[18px] md:text-[18px] font-bold uppercase hover:opacity-90 transition-opacity inline-flex items-center gap-2"
               >
                 Contact us <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/services"
-                className="border border-background/40 text-background px-8 py-2.5 text-sm font-bold uppercase hover:bg-background/10 transition-colors"
+                className="border border-background/40 text-background px-8 py-2.5 text-[18px] md:text-[18px] font-bold uppercase hover:bg-background/10 transition-colors"
               >
                 Services
               </Link>
@@ -133,7 +139,7 @@ const Index = () => {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-[30px] md:text-[37px] font-bold uppercase">Why Vita</h2>
+            <h2 className="text-[28px] md:text-[42px] font-bold uppercase">Why Vita</h2>
             <SectionSeparator />
             <p className="text-muted-foreground max-w-2xl mx-auto">Reliable Project Leadership From Start to Finish</p>
           </div>
@@ -144,8 +150,8 @@ const Index = () => {
                   <point.icon className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm mb-1">{point.title}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{point.desc}</p>
+                  <h4 className="font-bold text-[16px] mb-1">{point.title}</h4>
+                  <p className="text-[15px] text-muted-foreground leading-relaxed">{point.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -157,7 +163,7 @@ const Index = () => {
       <section className="py-16 md:py-20 bg-muted">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-[30px] md:text-[37px] font-bold uppercase">Services</h2>
+            <h2 className="text-[28px] md:text-[42px] font-bold uppercase">Services</h2>
             <SectionSeparator />
             <p className="text-muted-foreground max-w-2xl mx-auto">General Contracting Services</p>
           </div>
@@ -166,29 +172,29 @@ const Index = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="bg-background p-8 border border-border">
-              <h3 className="text-[21px] font-bold mb-4 text-primary">Commercial</h3>
+              <h3 className="text-[24px] md:text-[30px] font-bold mb-4 text-primary">Commercial</h3>
               <ul className="space-y-2.5">
                 {commercialServices.map((s) => (
-                  <li key={s} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <li key={s} className="flex items-start gap-2.5 text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-1" />
                     {s}
                   </li>
                 ))}
               </ul>
             </div>
             <div className="bg-background p-8 border border-border">
-              <h3 className="text-[21px] font-bold mb-4 text-primary">Residential</h3>
+              <h3 className="text-[24px] md:text-[30px] font-bold mb-4 text-primary">Residential</h3>
               <ul className="space-y-2.5">
                 {residentialServices.map((s) => (
-                  <li key={s} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <li key={s} className="flex items-start gap-2.5 text-muted-foreground">
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-1" />
                     {s}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-          <p className="text-center text-sm text-muted-foreground mt-8 italic">
+          <p className="text-center text-muted-foreground mt-8 italic">
             If you're not sure where your project fits, send the details— we'll tell you quickly and honestly.
           </p>
         </div>
@@ -198,7 +204,7 @@ const Index = () => {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-[30px] md:text-[37px] font-bold uppercase">What We Handle</h2>
+            <h2 className="text-[28px] md:text-[42px] font-bold uppercase">What We Handle</h2>
             <SectionSeparator />
             <p className="text-muted-foreground max-w-2xl mx-auto">Coordination That Keeps Projects Moving</p>
           </div>
@@ -207,8 +213,8 @@ const Index = () => {
           </p>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {handlePoints.map((point) => (
-              <motion.div key={point} variants={fadeUp} className="flex items-start gap-3 text-sm">
-                <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+              <motion.div key={point} variants={fadeUp} className="flex items-start gap-3">
+                <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-1" />
                 <span className="text-muted-foreground">{point}</span>
               </motion.div>
             ))}
@@ -220,7 +226,7 @@ const Index = () => {
       <section className="py-16 md:py-20 bg-muted">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-[30px] md:text-[37px] font-bold uppercase">Process</h2>
+            <h2 className="text-[28px] md:text-[42px] font-bold uppercase">Process</h2>
             <SectionSeparator />
             <p className="text-muted-foreground max-w-2xl mx-auto">A Straightforward Build Process</p>
           </div>
@@ -228,8 +234,8 @@ const Index = () => {
             {processSteps.map((s) => (
               <div key={s.step} className="bg-background border border-border p-6 text-center">
                 <div className="text-2xl font-bold text-primary mb-2">{s.step}</div>
-                <h4 className="font-bold text-sm mb-2">{s.title}</h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+                <h4 className="font-bold text-[16px] mb-2">{s.title}</h4>
+                <p className="text-[14px] text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -239,13 +245,13 @@ const Index = () => {
       {/* CTA */}
       <section className="py-16 md:py-20 bg-foreground">
         <div className="max-w-[1170px] mx-auto px-4 text-center">
-          <h2 className="text-[30px] md:text-[37px] font-bold text-background mb-4">Ready to Start Your Project?</h2>
+          <h2 className="text-[28px] md:text-[42px] font-bold text-background mb-4">Ready to Start Your Project?</h2>
           <p className="text-background/70 mb-8 max-w-xl mx-auto">
             Contact our team today for a consultation and project estimate.
           </p>
           <Link
             to="/contact"
-            className="bg-primary text-primary-foreground px-8 py-3.5 font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+            className="bg-primary text-primary-foreground px-8 py-3.5 text-[18px] font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-2"
           >
             Contact Us <ArrowRight className="w-4 h-4" />
           </Link>

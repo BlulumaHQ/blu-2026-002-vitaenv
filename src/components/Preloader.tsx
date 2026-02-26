@@ -6,14 +6,13 @@ const Preloader = () => {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    // Lock scroll
     document.body.style.overflow = "hidden";
 
-    const fadeTimer = setTimeout(() => setFading(true), 800);
+    const fadeTimer = setTimeout(() => setFading(true), 500);
     const removeTimer = setTimeout(() => {
       setVisible(false);
       document.body.style.overflow = "";
-    }, 1100);
+    }, 800);
 
     return () => {
       clearTimeout(fadeTimer);
@@ -36,8 +35,7 @@ const Preloader = () => {
     >
       <img
         src={vitaLogo}
-        alt=""
-        aria-hidden="true"
+        alt="Vita Constructions"
         className="w-48 md:w-56"
         style={{
           animation: "preloader-scale 500ms ease-out forwards",

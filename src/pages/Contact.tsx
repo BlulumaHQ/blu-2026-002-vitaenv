@@ -2,9 +2,15 @@ import { useState, FormEvent } from "react";
 import { Smartphone, Mail, MapPin, ChevronsRight, Home } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionSeparator from "@/components/SectionSeparator";
+import usePageMeta from "@/hooks/usePageMeta";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  usePageMeta({
+    title: "Vita Constructions | Contact",
+    description: "Get in touch with Vita Constructions for a consultation, project estimate, or general inquiry. Located in Vancouver, BC.",
+  });
+
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
 
@@ -19,7 +25,6 @@ const Contact = () => {
       message: formData.get("message"),
     };
 
-    // mailto fallback — routes to jim@vitaenv.com
     const mailtoLink = `mailto:jim@vitaenv.com?subject=Contact Form Submission from ${data.name}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\nMessage: ${data.message}`)}`;
     
     setTimeout(() => {
@@ -29,7 +34,6 @@ const Contact = () => {
         description: "Thank you for contacting us. We'll get back to you shortly.",
       });
       (e.target as HTMLFormElement).reset();
-      // Open mailto as a backup
       window.open(mailtoLink, "_self");
     }, 600);
   };
@@ -57,18 +61,18 @@ const Contact = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             <div className="bg-primary text-center p-8 flex flex-col items-center">
               <Smartphone className="w-8 h-8 text-primary-foreground mb-3" />
-              <h5 className="text-primary-foreground font-bold text-sm mb-2">Phone number</h5>
-              <p className="text-primary-foreground/70 text-sm">(778) 508-1118</p>
+              <h5 className="text-primary-foreground font-bold mb-2">Phone number</h5>
+              <p className="text-primary-foreground/70">(778) 508-1118</p>
             </div>
             <div className="bg-primary text-center p-8 flex flex-col items-center">
               <Mail className="w-8 h-8 text-primary-foreground mb-3" />
-              <h5 className="text-primary-foreground font-bold text-sm mb-2">Email address</h5>
-              <p className="text-primary-foreground/70 text-sm">info@vitaenv.com</p>
+              <h5 className="text-primary-foreground font-bold mb-2">Email address</h5>
+              <p className="text-primary-foreground/70">info@vitaenv.com</p>
             </div>
             <div className="bg-primary text-center p-8 flex flex-col items-center">
               <MapPin className="w-8 h-8 text-primary-foreground mb-3" />
-              <h5 className="text-primary-foreground font-bold text-sm mb-2">Address info</h5>
-              <p className="text-primary-foreground/70 text-sm">
+              <h5 className="text-primary-foreground font-bold mb-2">Address info</h5>
+              <p className="text-primary-foreground/70">
                 110-60 East 5th Avenue<br />
                 Vancouver, BC V5T 1G8
               </p>
@@ -89,7 +93,7 @@ const Contact = () => {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Vita Environmental Location"
+                  title="Vita Constructions Location"
                   className="w-full"
                 />
               </div>
@@ -109,7 +113,7 @@ const Contact = () => {
                       type="text"
                       required
                       placeholder="Name"
-                      className="flex-1 py-2.5 pr-3 text-sm bg-background outline-none"
+                      className="flex-1 py-2.5 pr-3 bg-background outline-none"
                     />
                   </div>
                   <div className="flex items-center border border-border bg-background">
@@ -121,7 +125,7 @@ const Contact = () => {
                       type="email"
                       required
                       placeholder="Email"
-                      className="flex-1 py-2.5 pr-3 text-sm bg-background outline-none"
+                      className="flex-1 py-2.5 pr-3 bg-background outline-none"
                     />
                   </div>
                   <div className="flex items-start border border-border bg-background">
@@ -133,20 +137,20 @@ const Contact = () => {
                       rows={3}
                       required
                       placeholder="Message"
-                      className="flex-1 py-2.5 pr-3 text-sm bg-background outline-none resize-none"
+                      className="flex-1 py-2.5 pr-3 bg-background outline-none resize-none"
                     />
                   </div>
                   <div className="flex gap-3">
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="bg-primary text-primary-foreground text-xs font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity inline-flex items-center gap-1 disabled:opacity-60"
+                      className="bg-primary text-primary-foreground text-[14px] font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity inline-flex items-center gap-1 disabled:opacity-60"
                     >
                       {submitting ? "Sending..." : "Submit"} <ChevronsRight className="w-3 h-3" />
                     </button>
                     <button
                       type="reset"
-                      className="bg-primary text-primary-foreground text-xs font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity inline-flex items-center gap-1"
+                      className="bg-primary text-primary-foreground text-[14px] font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity inline-flex items-center gap-1"
                     >
                       Reset <ChevronsRight className="w-3 h-3" />
                     </button>
