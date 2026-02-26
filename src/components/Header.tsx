@@ -43,7 +43,7 @@ const Header = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-[18px] font-medium tracking-wide transition-colors hover:text-primary ${
+                className={`text-[15px] font-medium tracking-[0.5px] leading-tight transition-colors hover:text-primary ${
                   location.pathname === link.path ? "text-primary" : "text-foreground"
                 }`}
               >
@@ -71,7 +71,7 @@ const Header = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setMobileOpen(false)}
-                  className={`text-[17px] font-medium tracking-wide py-2.5 transition-colors ${
+                  className={`text-[14px] font-medium tracking-[0.5px] py-2.5 transition-colors ${
                     location.pathname === link.path ? "text-primary" : "text-foreground"
                   }`}
                 >
