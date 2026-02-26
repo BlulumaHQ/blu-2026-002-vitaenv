@@ -9,11 +9,11 @@ const Preloader = () => {
     // Lock scroll
     document.body.style.overflow = "hidden";
 
-    const fadeTimer = setTimeout(() => setFading(true), 500);
+    const fadeTimer = setTimeout(() => setFading(true), 800);
     const removeTimer = setTimeout(() => {
       setVisible(false);
       document.body.style.overflow = "";
-    }, 800);
+    }, 1100);
 
     return () => {
       clearTimeout(fadeTimer);
@@ -28,7 +28,7 @@ const Preloader = () => {
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center"
       style={{
-        backgroundColor: "#000000",
+        backgroundColor: "#FFFFFF",
         opacity: fading ? 0 : 1,
         transition: "opacity 300ms ease-out",
         pointerEvents: fading ? "none" : "auto",
