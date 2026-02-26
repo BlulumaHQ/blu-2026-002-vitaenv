@@ -1,5 +1,5 @@
 import { useState, FormEvent } from "react";
-import { Smartphone, Mail, MapPin } from "lucide-react";
+import { Smartphone, Mail, MapPin, ChevronsRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionSeparator from "@/components/SectionSeparator";
 import { useToast } from "@/hooks/use-toast";
@@ -11,6 +11,17 @@ const Contact = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
+    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("username"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    };
+
+    // mailto fallback — routes to jim@vitaenv.com
+    const mailtoLink = `mailto:jim@vitaenv.com?subject=Contact Form Submission from ${data.name}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\nMessage: ${data.message}`)}`;
+    
     setTimeout(() => {
       setSubmitting(false);
       toast({
@@ -18,11 +29,9 @@ const Contact = () => {
         description: "Thank you for contacting us. We'll get back to you shortly.",
       });
       (e.target as HTMLFormElement).reset();
-    }, 1000);
-  };
-
-  const handleReset = (e: FormEvent<HTMLFormElement>) => {
-    (e.target as HTMLFormElement).closest("form")?.reset();
+      // Open mailto as a backup
+      window.open(mailtoLink, "_self");
+    }, 600);
   };
 
   return (
@@ -46,19 +55,16 @@ const Contact = () => {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            {/* Phone */}
             <div className="bg-primary text-center p-8 flex flex-col items-center">
               <Smartphone className="w-8 h-8 text-primary-foreground mb-3" />
               <h5 className="text-primary-foreground font-bold text-sm mb-2">Phone number</h5>
               <p className="text-primary-foreground/70 text-sm">(778) 508-1118</p>
             </div>
-            {/* Email */}
             <div className="bg-primary text-center p-8 flex flex-col items-center">
               <Mail className="w-8 h-8 text-primary-foreground mb-3" />
               <h5 className="text-primary-foreground font-bold text-sm mb-2">Email address</h5>
               <p className="text-primary-foreground/70 text-sm">info@vitaenv.com</p>
             </div>
-            {/* Address */}
             <div className="bg-primary text-center p-8 flex flex-col items-center">
               <MapPin className="w-8 h-8 text-primary-foreground mb-3" />
               <h5 className="text-primary-foreground font-bold text-sm mb-2">Address info</h5>
@@ -71,7 +77,6 @@ const Contact = () => {
 
           {/* Map & Form */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Map */}
             <div>
               <h4 className="text-lg font-bold uppercase mb-2">Location</h4>
               <SectionSeparator />
@@ -90,7 +95,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Form */}
             <div>
               <h4 className="text-lg font-bold uppercase mb-2">Contact Form</h4>
               <SectionSeparator />
@@ -138,13 +142,13 @@ const Contact = () => {
                       disabled={submitting}
                       className="bg-primary text-primary-foreground text-xs font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity inline-flex items-center gap-1 disabled:opacity-60"
                     >
-                      {submitting ? "Sending..." : "Submit"} <span className="text-[10px]">»</span>
+                      {submitting ? "Sending..." : "Submit"} <ChevronsRight className="w-3 h-3" />
                     </button>
                     <button
                       type="reset"
                       className="bg-primary text-primary-foreground text-xs font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity inline-flex items-center gap-1"
                     >
-                      Reset <span className="text-[10px]">»</span>
+                      Reset <ChevronsRight className="w-3 h-3" />
                     </button>
                   </div>
                 </form>

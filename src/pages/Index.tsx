@@ -1,15 +1,19 @@
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { CheckCircle, ArrowRight, ClipboardList, Calendar, ShoppingCart, HardHat, Shield, Users, MessageSquare, Briefcase } from "lucide-react";
+import { CheckCircle, ArrowRight, Users, Briefcase, ClipboardList, MessageSquare, Shield } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionSeparator from "@/components/SectionSeparator";
-import sliderImage from "@/assets/vita-slider-1.png";
+import sliderImage1 from "@/assets/vita-slider-1.png";
+import sliderImage2 from "@/assets/vita-slider-2.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
+
+const slides = [sliderImage1, sliderImage2];
 
 const whyVitaPoints = [
   { icon: Users, title: "Strong GC management", desc: "We coordinate trades, schedules, materials, and site standards so the work stays organized and moving." },
@@ -54,37 +58,74 @@ const processSteps = [
 ];
 
 const Index = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 6000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
   return (
     <Layout>
-      {/* Hero */}
-      <section className="relative min-h-[500px] md:min-h-[600px] flex items-center">
-        <div className="absolute inset-0">
-          <img src={sliderImage} alt="Construction" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-foreground/70" />
-        </div>
-        <div className="relative z-10 max-w-[1170px] mx-auto px-4 py-20">
-          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-2xl">
-            <motion.h1 variants={fadeUp} className="text-3xl md:text-5xl font-bold text-background leading-tight mb-6">
-              General Contracting, Made Simple.
+      {/* Hero Slider */}
+      <section className="relative min-h-[550px] md:min-h-[700px] overflow-hidden">
+        {slides.map((slide, i) => (
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-1000 ${i === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+          >
+            <img
+              src={slide}
+              alt={`Slide ${i + 1}`}
+              className="w-full h-full object-cover"
+              style={{
+                animation: i === currentSlide ? "kenburns 12s ease-in-out forwards" : "none",
+              }}
+            />
+            <div className="absolute inset-0 bg-foreground/50" />
+          </div>
+        ))}
+
+        {/* Text overlay — positioned upper-mid like original */}
+        <div className="relative z-20 max-w-[1170px] mx-auto px-4 pt-[100px] md:pt-[140px]">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-[700px]">
+            <motion.h1 variants={fadeUp} className="text-[32px] md:text-[50px] font-bold text-background leading-[1.15] mb-5 uppercase" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+              <span className="text-primary">General Contracting,</span> Made Simple.
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-background/85 text-base md:text-lg leading-relaxed mb-8">
+            <motion.p variants={fadeUp} className="text-background/85 text-base md:text-lg leading-[1.65] mb-8">
               Vita is a general contracting company delivering clean, durable builds with 15+ years of experience. We lead projects with clear communication, strong coordination, and the flexibility to meet tight timelines and practical budgets—for both commercial and residential work.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
               <Link
                 to="/contact"
-                className="bg-primary text-primary-foreground px-7 py-3 text-sm font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+                className="bg-primary text-primary-foreground px-8 py-2.5 text-sm font-bold uppercase hover:opacity-90 transition-opacity inline-flex items-center gap-2"
               >
                 Contact us <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/services"
-                className="border border-background/40 text-background px-7 py-3 text-sm font-semibold hover:bg-background/10 transition-colors"
+                className="border border-background/40 text-background px-8 py-2.5 text-sm font-bold uppercase hover:bg-background/10 transition-colors"
               >
                 Services
               </Link>
             </motion.div>
           </motion.div>
+        </div>
+
+        {/* Dots */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              className={`w-3 h-3 rounded-full transition-colors ${i === currentSlide ? "bg-primary" : "bg-background/50"}`}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
         </div>
       </section>
 
@@ -124,7 +165,6 @@ const Index = () => {
             Vita manages projects from planning to closeout—so you have one accountable team driving the job forward.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* Commercial */}
             <div className="bg-background p-8 border border-border">
               <h3 className="text-lg font-bold mb-4 text-primary">Commercial</h3>
               <ul className="space-y-2.5">
@@ -136,7 +176,6 @@ const Index = () => {
                 ))}
               </ul>
             </div>
-            {/* Residential */}
             <div className="bg-background p-8 border border-border">
               <h3 className="text-lg font-bold mb-4 text-primary">Residential</h3>
               <ul className="space-y-2.5">
@@ -185,7 +224,7 @@ const Index = () => {
             <SectionSeparator />
             <p className="text-muted-foreground max-w-2xl mx-auto">A Straightforward Build Process</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
             {processSteps.map((s) => (
               <div key={s.step} className="bg-background border border-border p-6 text-center">
                 <div className="text-2xl font-bold text-primary mb-2">{s.step}</div>
