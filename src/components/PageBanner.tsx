@@ -16,14 +16,14 @@ const PageBanner = ({ title, backgroundImage, breadcrumb }: PageBannerProps) => 
     >
       <div className="absolute inset-0 bg-foreground/70" />
       <div className="relative max-w-[1170px] mx-auto px-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-background">{title}</h1>
+        <h1 className="text-[38px] md:text-[50px] font-bold text-background">{title}</h1>
       </div>
     </div>
 
     {/* Breadcrumb */}
     <div className="bg-muted border-b border-border">
       <div className="max-w-[1170px] mx-auto px-4 py-3">
-        <ul className="flex items-center gap-2 text-sm">
+        <ul className="flex items-center gap-2 text-[14px]">
           <li>
             <Link to="/" className="flex items-center gap-1 text-primary hover:underline">
               <Home className="w-3.5 h-3.5" />

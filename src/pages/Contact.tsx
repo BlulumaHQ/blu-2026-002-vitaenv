@@ -1,5 +1,5 @@
 import { useState, FormEvent } from "react";
-import { Smartphone, Mail, MapPin, ChevronsRight } from "lucide-react";
+import { Smartphone, Mail, MapPin, ChevronsRight, Home } from "lucide-react";
 import Layout from "@/components/Layout";
 import SectionSeparator from "@/components/SectionSeparator";
 import { useToast } from "@/hooks/use-toast";
@@ -39,10 +39,10 @@ const Contact = () => {
       {/* Breadcrumb */}
       <div className="bg-muted border-b border-border">
         <div className="max-w-[1170px] mx-auto px-4 py-3">
-          <ul className="flex items-center gap-2 text-sm">
+          <ul className="flex items-center gap-2 text-[14px]">
             <li>
               <a href="/" className="text-primary hover:underline flex items-center gap-1">
-                <span className="text-xs">🏠</span> Home
+                <Home className="w-3.5 h-3.5" /> Home
               </a>
             </li>
             <li className="text-muted-foreground">»</li>

@@ -93,7 +93,7 @@ const Index = () => {
         {/* Text overlay — positioned upper-mid like original */}
         <div className="relative z-20 max-w-[1170px] mx-auto px-4 pt-[100px] md:pt-[140px]">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-[700px]">
-            <motion.h1 variants={fadeUp} className="text-[32px] md:text-[50px] font-bold text-background leading-[1.15] mb-5 uppercase" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+            <motion.h1 variants={fadeUp} className="text-[40px] md:text-[62px] font-bold text-background leading-[1.15] mb-5 uppercase" style={{ fontFamily: "'Open Sans', sans-serif" }}>
               <span className="text-primary">General Contracting,</span> Made Simple.
             </motion.h1>
             <motion.p variants={fadeUp} className="text-background/85 text-base md:text-lg leading-[1.65] mb-8">
@@ -133,7 +133,7 @@ const Index = () => {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold uppercase">Why Vita</h2>
+            <h2 className="text-[30px] md:text-[37px] font-bold uppercase">Why Vita</h2>
             <SectionSeparator />
             <p className="text-muted-foreground max-w-2xl mx-auto">Reliable Project Leadership From Start to Finish</p>
           </div>
@@ -157,7 +157,7 @@ const Index = () => {
       <section className="py-16 md:py-20 bg-muted">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold uppercase">Services</h2>
+            <h2 className="text-[30px] md:text-[37px] font-bold uppercase">Services</h2>
             <SectionSeparator />
             <p className="text-muted-foreground max-w-2xl mx-auto">General Contracting Services</p>
           </div>
@@ -166,7 +166,7 @@ const Index = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="bg-background p-8 border border-border">
-              <h3 className="text-lg font-bold mb-4 text-primary">Commercial</h3>
+              <h3 className="text-[21px] font-bold mb-4 text-primary">Commercial</h3>
               <ul className="space-y-2.5">
                 {commercialServices.map((s) => (
                   <li key={s} className="flex items-start gap-2.5 text-sm text-muted-foreground">
@@ -177,7 +177,7 @@ const Index = () => {
               </ul>
             </div>
             <div className="bg-background p-8 border border-border">
-              <h3 className="text-lg font-bold mb-4 text-primary">Residential</h3>
+              <h3 className="text-[21px] font-bold mb-4 text-primary">Residential</h3>
               <ul className="space-y-2.5">
                 {residentialServices.map((s) => (
                   <li key={s} className="flex items-start gap-2.5 text-sm text-muted-foreground">
@@ -198,7 +198,7 @@ const Index = () => {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold uppercase">What We Handle</h2>
+            <h2 className="text-[30px] md:text-[37px] font-bold uppercase">What We Handle</h2>
             <SectionSeparator />
             <p className="text-muted-foreground max-w-2xl mx-auto">Coordination That Keeps Projects Moving</p>
           </div>
@@ -220,7 +220,7 @@ const Index = () => {
       <section className="py-16 md:py-20 bg-muted">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold uppercase">Process</h2>
+            <h2 className="text-[30px] md:text-[37px] font-bold uppercase">Process</h2>
             <SectionSeparator />
             <p className="text-muted-foreground max-w-2xl mx-auto">A Straightforward Build Process</p>
           </div>
@@ -239,7 +239,7 @@ const Index = () => {
       {/* CTA */}
       <section className="py-16 md:py-20 bg-foreground">
         <div className="max-w-[1170px] mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-background mb-4">Ready to Start Your Project?</h2>
+          <h2 className="text-[30px] md:text-[37px] font-bold text-background mb-4">Ready to Start Your Project?</h2>
           <p className="text-background/70 mb-8 max-w-xl mx-auto">
             Contact our team today for a consultation and project estimate.
           </p>

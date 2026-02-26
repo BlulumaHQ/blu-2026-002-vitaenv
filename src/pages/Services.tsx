@@ -21,7 +21,7 @@ const Services = () => {
       <section className="py-16 md:py-20 bg-background">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold uppercase">Our Services</h2>
+            <h2 className="text-[30px] md:text-[37px] font-bold uppercase">Our Services</h2>
             <SectionSeparator />
             <p className="text-muted-foreground max-w-3xl mx-auto text-sm leading-relaxed">
               Asbestos is a naturally occurring mineral that was commonly used in building materials before 1990. Breathing in asbestos fibers can cause serious health problems, including lung cancer, asbestosis, and mesothelioma. Symptoms of asbestosis include shortness of breath, persistent cough, fatigue, wheezing, chest pain, and weight loss. If you suspect that you have been exposed to asbestos, it is important to seek medical attention immediately.
