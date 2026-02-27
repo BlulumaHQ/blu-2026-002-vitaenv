@@ -97,8 +97,8 @@ const Contact = () => {
               <MapPin className="w-8 h-8 text-primary-foreground mb-3" />
               <h5 className="text-primary-foreground font-bold mb-2">Address info</h5>
               <p className="text-primary-foreground/70">
-                110-60 East 5th Avenue<br />
-                Vancouver, BC V5T 1G8
+                73 East 6th Avenue, Unit 230<br />
+                Vancouver, BC V5T 1J3
               </p>
             </div>
           </div>
