@@ -122,17 +122,6 @@ const Index = () => {
           </motion.div>
         </div>
 
-        {/* Dots */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentSlide(i)}
-              className={`w-3 h-3 rounded-full transition-colors ${i === currentSlide ? "bg-primary" : "bg-background/50"}`}
-              aria-label={`Slide ${i + 1}`}
-            />
-          ))}
-        </div>
       </section>
 
       {/* Why Vita */}
