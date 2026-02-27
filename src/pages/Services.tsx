@@ -28,9 +28,6 @@ const Services = () => {
             <h2 className="text-[28px] md:text-[42px] font-bold uppercase">Tenant Improvements</h2>
             <SectionSeparator />
             <p className="text-primary font-bold text-lg mb-3">Flagship Service</p>
-            <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Commercial tenant improvements are our core focus. We specialize in delivering efficient, high-quality buildouts for business spaces across Metro Vancouver.
-            </p>
           </div>
 
           <motion.div
@@ -40,78 +37,58 @@ const Services = () => {
             variants={stagger}
             className="space-y-14"
           >
-            {/* Primary TI Capabilities */}
             <motion.div variants={fadeUp}>
-              <h3 className="text-[22px] md:text-[28px] font-bold uppercase mb-4">Primary TI Capabilities</h3>
               <ul className="list-disc list-inside text-muted-foreground space-y-2 leading-relaxed">
-                <li>Office Tenant Improvements</li>
-                <li>Retail / Showroom Tenant Improvements</li>
-                <li>Medical / Clinic Tenant Improvements</li>
-                <li>Light Industrial / Warehouse Office Improvements</li>
+                <li>Office TI</li>
+                <li>Retail / Showroom TI</li>
+                <li>Medical / Clinic TI</li>
+                <li>Light Industrial / Warehouse Office TI</li>
+                <li>Demising walls, reconfigurations, back-of-house upgrades</li>
               </ul>
             </motion.div>
 
-            {/* Common TI Scopes */}
+            {/* Buildouts & Interior Renovations */}
             <motion.div variants={fadeUp}>
-              <h3 className="text-[22px] md:text-[28px] font-bold uppercase mb-4">Common TI Scopes</h3>
+              <h3 className="text-[22px] md:text-[28px] font-bold uppercase mb-4">Buildouts &amp; Interior Renovations</h3>
               <ul className="list-disc list-inside text-muted-foreground space-y-2 leading-relaxed">
-                <li>Demising walls and suite separations</li>
-                <li>Interior reconfigurations</li>
-                <li>Back-of-house upgrades</li>
-                <li>Finish coordination and installation</li>
-                <li>Occupied-space construction coordination</li>
+                <li>New unit buildouts (shell to occupancy-ready)</li>
+                <li>Interior remodels / refreshes</li>
+                <li>Space reconfigurations</li>
+                <li>Finish upgrades (floors, ceilings, lighting coordination, paint)</li>
               </ul>
             </motion.div>
 
-            {/* Supporting Services */}
+            {/* Turnovers & Make-Good */}
             <motion.div variants={fadeUp}>
-              <h2 className="text-[28px] md:text-[36px] font-bold uppercase mb-8">Supporting Services</h2>
+              <h3 className="text-[22px] md:text-[28px] font-bold uppercase mb-4">Turnovers &amp; Make-Good</h3>
+              <ul className="list-disc list-inside text-muted-foreground space-y-2 leading-relaxed">
+                <li>Unit turnovers between tenants</li>
+                <li>Landlord make-good / restoration scope</li>
+                <li>Punch-list and deficiency work</li>
+                <li>Fast resets for re-lease timelines</li>
+              </ul>
+            </motion.div>
 
-              <div className="space-y-10">
-                {/* Buildouts & Interior Renovations */}
-                <div>
-                  <h3 className="text-[22px] md:text-[28px] font-bold uppercase mb-4">Buildouts &amp; Interior Renovations</h3>
-                  <ul className="list-disc list-inside text-muted-foreground space-y-2 leading-relaxed">
-                    <li>New unit buildouts (shell to occupancy-ready)</li>
-                    <li>Interior remodels and refreshes</li>
-                    <li>Space reconfigurations</li>
-                    <li>Finish upgrades (floors, ceilings, lighting coordination, paint)</li>
-                  </ul>
-                </div>
+            {/* Project Management & General Contracting */}
+            <motion.div variants={fadeUp}>
+              <h3 className="text-[22px] md:text-[28px] font-bold uppercase mb-4">Project Management &amp; General Contracting</h3>
+              <ul className="list-disc list-inside text-muted-foreground space-y-2 leading-relaxed">
+                <li>Trade coordination &amp; scheduling</li>
+                <li>Budget management / cost tracking</li>
+                <li>Site supervision &amp; safety</li>
+                <li>Procurement planning (long-lead items)</li>
+                <li>Quality control &amp; closeout</li>
+              </ul>
+            </motion.div>
 
-                {/* Turnovers & Make-Good */}
-                <div>
-                  <h3 className="text-[22px] md:text-[28px] font-bold uppercase mb-4">Turnovers &amp; Make-Good</h3>
-                  <ul className="list-disc list-inside text-muted-foreground space-y-2 leading-relaxed">
-                    <li>Unit turnovers between tenants</li>
-                    <li>Landlord make-good / restoration scope</li>
-                    <li>Punch-list and deficiency work</li>
-                    <li>Fast resets for re-lease timelines</li>
-                  </ul>
-                </div>
-
-                {/* Project Management & General Contracting */}
-                <div>
-                  <h3 className="text-[22px] md:text-[28px] font-bold uppercase mb-4">Project Management &amp; General Contracting</h3>
-                  <ul className="list-disc list-inside text-muted-foreground space-y-2 leading-relaxed">
-                    <li>Trade coordination &amp; scheduling</li>
-                    <li>Budget management / cost tracking</li>
-                    <li>Site supervision &amp; safety</li>
-                    <li>Procurement planning (long-lead items)</li>
-                    <li>Quality control &amp; closeout</li>
-                  </ul>
-                </div>
-
-                {/* Maintenance & Targeted Repairs */}
-                <div>
-                  <h3 className="text-[22px] md:text-[28px] font-bold uppercase mb-4">Maintenance &amp; Targeted Repairs</h3>
-                  <ul className="list-disc list-inside text-muted-foreground space-y-2 leading-relaxed">
-                    <li>Damage repairs (water, wear-and-tear, impacts)</li>
-                    <li>Drywall/paint, door/hardware, flooring patch/replace</li>
-                    <li>Small upgrades and ongoing service</li>
-                  </ul>
-                </div>
-              </div>
+            {/* Maintenance & Targeted Repairs */}
+            <motion.div variants={fadeUp}>
+              <h3 className="text-[22px] md:text-[28px] font-bold uppercase mb-4">Maintenance &amp; Targeted Repairs</h3>
+              <ul className="list-disc list-inside text-muted-foreground space-y-2 leading-relaxed">
+                <li>Damage repairs (water, wear-and-tear, impacts)</li>
+                <li>Drywall/paint, door/hardware, flooring patch/replace</li>
+                <li>Small upgrades and ongoing service</li>
+              </ul>
             </motion.div>
 
             {/* Typical Scopes */}
