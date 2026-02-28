@@ -10,7 +10,7 @@ const Footer = () => {
             <p className="md:text-[13px] text-[12px]">
               Vita Constructions Copyright © 2026 All Rights Reserved.
             </p>
-            <p className="md:text-[13px] text-[12px]">
+            <p className="md:text-[13px] text-[12px]" style={{ color: '#999999' }}>
               Web Design by{" "}
               <a
                 href="https://bluluma.com"
