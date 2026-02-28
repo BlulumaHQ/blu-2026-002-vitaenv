@@ -17,7 +17,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity underline underline-offset-2"
-                style={{ color: '#FFFFFF' }}
+                style={{ color: '#999999' }}
               >
                 Bluluma Design
               </a>
