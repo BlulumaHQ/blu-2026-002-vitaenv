@@ -22,39 +22,29 @@ const Contact = () => {
     const formData = new FormData(form);
 
     try {
-      const res = await fetch("https://api.staticforms.xyz/submit", {
+      const res = await fetch("https://formspree.io/f/xkokkbjo", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          accessKey: "sf_9cnbhm86hb32b3f7ibabhc00",
-          name: formData.get("username"),
-          email: formData.get("email"),
-          phone: formData.get("phone") || "",
-          message: formData.get("message"),
-          subject: "Vita Constructions Website Inquiry",
-          source: "vita-preview.bluluma.com",
-        }),
+        headers: { Accept: "application/json" },
+        body: formData,
       });
 
-      const data = await res.json();
-
-      if (data.success) {
+      if (res.ok) {
         toast({
           title: "Message Sent",
-          description: "Thank you for contacting us. We'll get back to you shortly.",
+          description: "Thank you. Your message has been received. We will get back to you shortly.",
         });
         form.reset();
       } else {
         toast({
           title: "Error",
-          description: "Something went wrong. Please try again.",
+          description: "Something went wrong. Please try again or contact us directly.",
           variant: "destructive",
         });
       }
     } catch {
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again later.",
+        description: "Something went wrong. Please try again or contact us directly.",
         variant: "destructive",
       });
     } finally {
